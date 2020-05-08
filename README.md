@@ -129,5 +129,6 @@ Is always welcome. In particular, there is a dire need for tests and documentati
 
 ## License
 All files in the directory `from_3b1b`, which by and large generate the visuals for 3b1b videos, are copyright 3Blue1Brown.
+All files in the directory `from_rahul`, which by and large generate the visuals for csglitz videos, are copyright (c) 2020 Rahul Sharma.
 
 The general purpose animation code found in the remainder of the repository, on the other hand, is under the MIT license.
