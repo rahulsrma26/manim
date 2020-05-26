@@ -10,7 +10,7 @@
    id="emoji"
    viewBox="0 0 72 72"
    version="1.1"
-   sodipodi:docname="keyboard.svg"
+   sodipodi:docname="mouse.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
      id="metadata20">
@@ -40,9 +40,9 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="9.2709555"
-     inkscape:cx="31.20699"
-     inkscape:cy="44.683893"
+     inkscape:zoom="26.222222"
+     inkscape:cx="37.597788"
+     inkscape:cy="41.245949"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -60,22 +60,18 @@
      inkscape:connector-curvature="0" />
   <path
      style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 35.217513,15.58726 V 28.449152 H 20.170521 l 0,-5.958612 c 0,-1.864209 6.710958,-6.90328 15.046992,-6.90328 z"
-     id="rect828-1"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccc" />
-  <path
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="M 35.217513,15.58726 V 28.449152 H 50.264505 V 22.49054 c 0,-1.864209 -6.710958,-6.90328 -15.046992,-6.90328 z"
+     d="m 35.217513,15.58726 v 5.234773 c 1.336119,0.422273 1.71815,2.071628 1.735877,7.627119 H 50.264505 V 22.49054 c 0,-1.864209 -6.710958,-6.90328 -15.046992,-6.90328 z"
      id="rect828-1-4"
      inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccc" />
-  <rect
+     sodipodi:nodetypes="cccccc" />
+  <path
      style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="rect875"
-     width="3.7372882"
-     height="10.144068"
-     x="33.330509"
-     y="20.93644"
-     ry="1.8686441" />
+     d="m 35.199153,20.93644 c 1.035229,0 1.868644,0.833415 1.868644,1.868644 v 6.406779 c 0,1.035229 -0.833415,1.868644 -1.868644,1.868644 -1.035229,0 -1.868644,-0.833415 -1.868644,-1.868644 v -6.406779 c 0,-1.035229 0.833415,-1.868644 1.868644,-1.868644 z"
+     id="rect875" />
+  <path
+     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 35.217513,15.58726 v 5.234773 c -2.518322,0.765493 -1.832557,1.804679 -1.888419,7.627119 H 20.170521 V 22.49054 c 0,-1.864209 6.710958,-6.90328 15.046992,-6.90328 z"
+     id="rect828-1-4-5"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccccc" />
 </svg>

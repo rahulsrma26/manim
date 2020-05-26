@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 from manimlib.imports import *
-# from rahul.ninja import Ninja
-from rahul.utils import VSColors, ExplainableTextObject
+# from from_rahul.ninja import Ninja
+from from_rahul.utils import VSColors, ExplainableTextObject
 
-# python -m manim rahul\01_vars.py ArithmaticOperators -c #151520 -pl
+# python -m manim from_rahul\01_vars.py ArithmaticOperators -c #151520 -pl
 DIR = os.path.dirname(os.path.abspath(__file__))
+NINJA_DIR = DIR
 
 class Ninja:
     BODY_MAP = {

@@ -3,6 +3,8 @@
 import os
 from manimlib.imports import *
 
+# python -m manim from_rahul\ninja.py EmojiTest -c #151520 -pl
+
 NINJA_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def get_blink_fn(m):
@@ -46,7 +48,7 @@ class Ninja(SVGMobject):
         "sword": "#A58B7D",
         "handle": "#72565F",
         "mouth": "#766D57",
-        "ai": "#E36566"
+        "ai": "#E36566",
     }
     LEADER_MAP = {**COLOR_MAP, **{
         "face": "#414E46",
@@ -125,14 +127,32 @@ class Ninja(SVGMobject):
         center = self.get_corner(UL) + np.array([0, self.get_height(), 0]) / 2
         return bubble.move_to(center)
 
+    def get_speech(self, obj:Mobject, gap=0.5, height=None, width=None, buff=1, side=LEFT, color="#efefdf"):
+        rectangle = RoundedRectangle(color=color).set_fill(color=color, opacity=1).set_stroke(width=0)
+        rectangle.stretch_to_fit_width(width if width else (obj.get_width() + gap))
+        rectangle.stretch_to_fit_height(height if height else (obj.get_height() + gap))
+        rectangle.next_to(self, direction=UP, buff=buff, aligned_edge=RIGHT)
+        obj.move_to(rectangle.get_center())
+        left = rectangle.get_corner(DL)
+        right = rectangle.get_corner(DR)
+        center = (left + right)/2
+        quater = (left+center)/2 if side is LEFT else (center+right)/2
+        tip = self.get_top()
+        triangle = Polygon(center, quater, tip, color=color).set_fill(color=color, opacity=1).set_stroke(width=0)
+        return rectangle, triangle
+
 
 class EmojiTest(Scene):
     def construct(self):
-        emotions = ['happy', 'thinking', 'dunno', 'sad', 'confused', 'cool', 'poker', 'surprised', 'scared', 'stars']
+        # supported: happy, sad, cool, dunno, yes, no, thinking, wave, surprised, shout
+        # emotions = ['happy', 'confused', 'sad', 'no', 'yes', 'happy'] #, 'dunno', 'confused', 'cool', 'poker', 'surprised', 'scared', 'stars']
+        emotions = 'happy, sad, cool, dunno, no, yes, thinking, confused, wave, surprised, shout, scared'.split(', ')
 
         last = emotions[0]
         last_ninja = Ninja(last).scale(2)
-        self.play(DrawBorderThenFill(last_ninja))
+        self.add(last_ninja)
+        self.wait(duration=2)
+        # self.play(DrawBorderThenFill(last_ninja))
 
         for cur in emotions[1:]:
             cur_ninja = Ninja(cur).scale(2)

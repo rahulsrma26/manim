@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 from manimlib.imports import *
-from rahul.ninja import Ninja
-from rahul.utils import *
+from from_rahul.ninja import Ninja
+from from_rahul.utils import *
 
-# python -m manim rahul\00_intro.py WhatIsPython -c #151520 -pl
-# python -m manim rahul\00_intro.py Logo -t -s
+# python -m manim from_rahul\00_intro.py WhatIsPython -c #151520 -pl
+# python -m manim from_rahul\00_intro.py Logo -t -s
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 SVG_DIR = os.path.join(DIR, 'svgs')
