@@ -1,66 +1,39 @@
+import hashlib
+import subprocess
 from manimlib.imports import *
 
-class CodeMobject(TexMobject):
+class CodeMobject(Code):
     CONFIG = {
-        "alignment": "\\centering",
-        "arg_separator": " ",
+        "language": "py",
+        "tab_width": 2,
+        "font": "Consolas",
+        "insert_line_no": False,
     }
 
-    def get_indentation(self, string):
-        for i, c in enumerate(string):
-            if c != ' ':
-                return i
-        return 0
+    def get_output(self, filepath):
+        return subprocess.Popen(
+            ["python", filepath], stdout=subprocess.PIPE).communicate()[0]
 
-    def get_indexes(self, string):
-        result, idx = [], 0
-        for i, c in enumerate(string):
-            if c != ' ':
-                result.append(idx)
-                idx += 1
-            else:
-                result.append(-1)
-        # print(string, result)
+    def code_hash(self, code):
+        id_str = str(code)
+        hasher = hashlib.sha256()
+        hasher.update(id_str.encode())
+        # Truncating at 16 bytes for cleanliness
+        return hasher.hexdigest()[:16]
+
+    def generate_code_file(self, code):
+        result = os.path.join(consts.MEDIA_DIR, "code", self.code_hash(code) + ".py")
+        if not os.path.exists(result):
+            first_line = code.split('\n')[0]
+            print(f"Writing '{first_line}...' to '{result}''")
+            with open(result, "w", encoding="utf-8") as outfile:
+                outfile.write(code)
+        self.output = self.get_output(result) if self.execute else ""
         return result
 
-    KEYWORDS = set(("False await else import pass None break except in raise True class" \
-        " finally is return and continue for lambda try as def from nonlocal while" \
-        " assert del global not with async elif if or yield").split())
-    KEYWORD_COLOR = "#ffffaf"
-
-    def set_color(self, obj, code):
-        indexes = self.get_indexes(code)
-        for key in self.KEYWORDS:
-            idx, n = code.find(key), len(key)
-            if idx >= 0 and (idx == 0 or code[idx - 1] == ' ') \
-                and (idx + n < len(code) or code[idx + n] == ' '):
-                for i in range(idx, idx + n):
-                    obj.submobjects[indexes[i]].set_color(color=self.KEYWORD_COLOR)
-        # print(words)
-
     def __init__(self, *code_string, **kwargs):
-        self.code_font = kwargs.pop('code_font', True)
-        self.code_coloring = kwargs.pop('code_coloring', True)
-        text_string = []
-        indentations = []
-        for code in code_string:
-            text = code.replace('\\', '$\\backslash$').replace("'", "\\textquotesingle ")
-            if self.code_font:
-                text = "\\texttt{" + text + "}"
-            else:
-                text = "\\text{" + text + "}"
-            text_string.append(text)
-            print(text_string)
-            indentations.append(self.get_indentation(code))
-            print(indentations[-1])
-        super().__init__(*text_string, **kwargs)
-        self.arrange_submobjects(DOWN, aligned_edge=LEFT)
-        width = max([max([y.get_width() for y in x.submobjects]) for x in self.submobjects])
-        # print('self.submobjects', len(self.submobjects))
-        for obj, ind, code in zip(self.submobjects, indentations, code_string):
-            # print(len(obj.submobjects), obj.tex_string)
-            # print(code, max(a) if a else 0)
-            # print(len(obj.submobjects), max(self.get_indexes(code_string[ind])))
-            obj.set_x(obj.get_x() + width*ind)
-            if self.code_coloring:
-                self.set_color(obj, code)
+        # digest_config(self, kwargs)
+        self.execute = kwargs.pop("execute", False)
+        self.code_file = self.generate_code_file('\n'.join(code_string))
+        super().__init__(self.code_file, **kwargs)
+        self.center()

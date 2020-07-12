@@ -3,6 +3,18 @@ import sys
 from shutil import rmtree
 import argparse
 from importlib import import_module
+from contextlib import closing
+from zipfile import ZipFile, ZIP_DEFLATED
+
+def zipdir(basedir, archivename):
+    assert os.path.isdir(basedir)
+    with closing(ZipFile(archivename, "w", ZIP_DEFLATED)) as z:
+        for root, dirs, files in os.walk(basedir):
+            #NOTE: ignore empty directories
+            for fn in files:
+                absfn = os.path.join(root, fn)
+                zfn = absfn[len(basedir)+len(os.sep):]
+                z.write(absfn, zfn)
 
 # python create_tests.py 04_curry_price -p
 
@@ -24,7 +36,7 @@ def print_test(file, data):
         print_row(file, data)
 
 
-def create_tests(folder, tests):
+def create_tests(folder, tests, name):
     i_dir = os.path.join(folder, "input")
     o_dir = os.path.join(folder, "output")
 
@@ -36,6 +48,10 @@ def create_tests(folder, tests):
             print_test(in_file, i)
         with open(os.path.join(o_dir, f"output{c:03d}.txt"), 'w') as out_file:
             print_test(out_file, o)
+
+    z_path = os.path.join(folder, "..", name + '.zip')
+    zipdir(folder, z_path)
+    print(z_path, 'created.')
 
 
 def get_args():
@@ -61,7 +77,7 @@ def main():
     test_dir = os.path.join(args.out, args.name)
     if os.path.isdir(test_dir):
         rmtree(test_dir)
-    create_tests(test_dir, tests)
+    create_tests(test_dir, tests, args.name)
 
 if __name__ == '__main__':
     main()

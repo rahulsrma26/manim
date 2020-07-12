@@ -10,8 +10,10 @@ class VSColors:
 
 
 class MCOLORS:
+    Background = "#151520"
     PeekabooPeach = "#F9A96A"
     WildWasabi = "#8CA65F"
     PoolParty = "#96D2C8"
     PerfectPlum = "#906979"
     FlatTeal = "#356272"
+    Twitter = "#00ceff"

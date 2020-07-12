@@ -13,7 +13,8 @@ class Cursor(Rectangle):
         for sub in mobject.submobjects:
             max_height = max(max_height, sub.get_height())
             for subsub in sub.submobjects:
-                max_width = max(max_width, subsub.get_width())
+                if isinstance(subsub, VMobjectFromSVGPathstring):
+                    max_width = max(max_width, subsub.get_width())
         Rectangle.__init__(
             self,
             height=max_height,
