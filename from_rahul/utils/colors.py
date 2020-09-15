@@ -17,3 +17,4 @@ class MCOLORS:
     PerfectPlum = "#906979"
     FlatTeal = "#356272"
     Twitter = "#00ceff"
+    BadYellow = "#C0C020"

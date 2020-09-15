@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from manimlib.imports import *
+from from_rahul.ninja import Ninja
+from from_rahul.extend import *
 
 # To watch one of these scenes, run the following:
 # python -m manim rahul\example.py LogoAnimation -c #151520 -pl
@@ -75,4 +77,14 @@ class LogoAnimation(Scene):
         self.wait()
 
 
-# python -m manim example_scenes.py SquareToCircle -pl -c #151520
+# python -m manim from_rahul\logo.py GitHub -pl
+class GitHub(AdvancedScene):
+    CONFIG = {
+        "camera_config": {
+            "background_color": WHITE
+        }
+    }
+    def construct(self):
+        w = Ninja("wave")
+        self.add(w)
+        w.wave(self, 1)

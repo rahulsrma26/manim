@@ -78,6 +78,7 @@ class AdvancedScene(Scene):
         animation = kwargs.pop('animation', None)
         scale = kwargs.pop('scale', None)
         intro = kwargs.pop('intro', True)
+        hbuff = kwargs.pop('hbuff', 1)
         sc = kwargs.pop('screenshot', None)
         reaction = self.get_reactions(**kwargs)
 
@@ -90,7 +91,7 @@ class AdvancedScene(Scene):
         h = TextMobject(heading, color=WHITE)
         if scale:
             h.scale(scale)
-        h.to_corner(UL, buff=1)
+        h.to_corner(UL, buff=hbuff)
         hu = Underline(h)
         if not intro:
             self.play(Write(h), self.change_ninja(next(reaction)), FadeIn(hu))
