@@ -63,7 +63,10 @@ def get_args():
     parser.add_argument('-o', '--out', default=media,
                         help='use this dir as output')
     parser.add_argument('-p', '--print', action='store_true')
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.name.endswith('.py'):
+        args.name = args.name[:-3]
+    return args
 
 
 def main():
